@@ -7,20 +7,18 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
   Bot,
-  Check,
   CheckCircle,
-  ChevronRight,
   Code,
   Database,
   Infinity,
   Laptop,
-  PencilRuler,
   Smartphone,
   Store,
   TrendingUp,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const SERVICES = [
   {
@@ -81,14 +79,28 @@ const SERVICES = [
   },
 ];
 
+const fadeInAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  animate: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.05 * index,
+    },
+  }),
+};
+
 export default function Home() {
   return (
     <div className='min-h-screen overflow-x-hidden'>
       <main className='h-screen relative'>
         <Navbar />
         <section className='flex h-full gap-x-4 '>
-          <div className=' p-6 md:pr-12  h-full md:flex-[0.45] flex flex-col justify-center md:pl-[8rem]'>
-            <h1 className='text-zinc-900 text-5xl md:text-7xl font-semibold text-start tracking-tight'>
+          <div className=' p-6 lg:pr-12  h-full lg:flex-[0.45] flex flex-col justify-center lg:pl-[8rem]'>
+            <h1 className='text-zinc-900 text-5xl lg:text-6xl font-semibold text-start tracking-tight'>
               From <span className='text-amber-500'>Data</span> to Deployment:
               We Drive Your <span className='text-amber-500'>Success</span>{' '}
             </h1>
@@ -141,9 +153,9 @@ export default function Home() {
           We provide the best services in all the below mentioned departments.
         </p>
 
-        <MaxWidthWrapper className='grid grid-cols-1 md:grid-cols-3 justify-items-center gap-x-8 gap-y-12 mt-16 px-6'>
+        <MaxWidthWrapper className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-x-8 gap-y-12 mt-16 px-6'>
           {SERVICES.map((service, index) => (
-            <div
+            <motion.div
               className={cn(
                 ' shadow-sm rounded-2xl px-8 py-16 max-w-[22rem] flex flex-col items-center',
                 index === 1
@@ -151,6 +163,13 @@ export default function Home() {
                   : 'bg-white'
               )}
               key={service.id}
+              whileInView='animate'
+              variants={fadeInAnimationVariants}
+              initial='initial'
+              viewport={{
+                once: true,
+              }}
+              custom={index}
             >
               {service.icon}
               <h2
@@ -169,7 +188,7 @@ export default function Home() {
               >
                 {service.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </MaxWidthWrapper>
       </section>

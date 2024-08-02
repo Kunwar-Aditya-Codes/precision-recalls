@@ -28,18 +28,18 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        'fixed transition-colors z-10 duration-300 w-full top-0 px-6',
+        'fixed transition-colors z-10 duration-300 w-full py-2 top-0 lg:pl-[8rem] xl:pl-0 ',
         isScrolled ? 'bg-white/80 backdrop-blur-xl shadow-md' : 'bg-transparent'
       )}
     >
       <MaxWidthWrapper className='flex items-center justify-between md:p-4 px-8 py-4'>
         <Link href={'/'}>
-          <h1 className='italic font-bold md:text-xl'>Precision Recalls</h1>
+          <h1 className='italic font-bold text-xl'>Precision Recalls</h1>
         </Link>
         <MobileNav />
         <ul
           className={cn(
-            'hidden md:flex items-center gap-x-12 text-sm font-medium tracking-tight uppercase text-zinc-900'
+            'hidden md:flex items-center gap-x-12 text-xs xl:text-sm font-medium tracking-tight uppercase text-zinc-900'
           )}
         >
           <li>
